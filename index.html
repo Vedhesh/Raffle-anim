@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax</title>
+    <title>Raffle.JS</title>
     <style type="text/css">
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;800&display=swap');
         body {
@@ -66,6 +66,8 @@
             font-family: 'Inter', sans-serif;
             color:white;
             font-size:4vh;
+            background-color: black;
+            border-radius: 8vh;
         }
         .functional{
             display: flex;
@@ -82,6 +84,7 @@
             font-weight: 800;
         }
         button{
+            margin-top:10vh;
             width:20vh;
             height:5vh;
             background-color: transparent;
@@ -109,29 +112,63 @@
             background-color: white;
             color:black;
         }
+        span{
+            color:rgb(32, 193, 241);
+        }
+        span:after{
+            content: '';
+            border-right: white 1px solid;
+            animation: animate steps(2) 1s infinite;
+        }
+        @keyframes animate{
+            0%{
+                border-right: white 1px solid;
+            }
+            50%{
+                border:none;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <div class="stars">
-        <div class="bg1" data-tilt data-tilt-full-page-listening>
-            <div class="bg2" data-tilt data-tilt-full-page-listening
-                <div class="bg3" data-tilt data-tilt-full-page-listening>
-                        <div class="bg4" data-tilt data-tilt-full-page-listening>
+        <div class="bg1" data-tilt data-tilt-full-page-listening data-tilt-max="8">
+            <div class="bg2" data-tilt data-tilt-full-page-listening data-tilt-max="8">
+                <div class="bg3" data-tilt data-tilt-full-page-listening data-tilt-max="8">
+                        <div class="bg4" data-tilt data-tilt-full-page-listening data-tilt-max="8">
 
                         </div>
                     </div>
                 </div>
-                
+            </div>
+        
                 <div class="functional">
-                    <h1>sedev.js</h1>
+                    <h1>Raffle.js</h1>
                     <p><emph>Fast</emph> animation library.</p>
+                    <p>Tailwind for animations: <span class="animate"></span></p>
                     <a href="https://github.com/Vedhesh/sedev.js"><button>Open In Github</button></a>
-                </div>
                 
             </div>
+        </div>
     <!--Code above this-->
+    <script>
+        const div = document.querySelector(".animate");
+        const text = 'loop-rotate-infinite-4s';
+        function TTE(d , t , i = 0){
+            if (i==0){
+                d.textContent = '';
+            }
+            d.textContent += text[i];
+            if (i === text.length -1) {
+                return
+            }
+            let rndm = Math.random(5,50);
+            setTimeout(() =>  TTE(d,t ,i + 1),150);
+        }
+        TTE(div,text)
+    </script>
     <script type="text/javascript" src="vanilla-tilt.js"></script>
 </body>
 
